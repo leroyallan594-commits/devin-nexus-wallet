@@ -1,0 +1,41 @@
+{
+  "name": "nexus",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^3.1.1",
+    "@solana/web3.js": "^1.98.4",
+    "axios": "^1.20.0",
+    "bip39": "^3.1.0",
+    "bitcoinjs-lib": "^7.0.1",
+    "ed25519-hd-key": "^2.0.0",
+    "ethers": "^6.17.0",
+    "expo": "~57.0.20",
+    "expo-local-authentication": "^57.0.2",
+    "expo-secure-store": "^57.0.3",
+    "expo-status-bar": "~57.0.1",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-get-random-values": "^2.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/react-native": "^14.0.1",
+    "@types/react": "~19.2.2",
+    "@typescript-eslint/eslint-plugin": "^8.69.0",
+    "@typescript-eslint/parser": "^8.69.0",
+    "eslint": "^10.9.1",
+    "eslint-plugin-security": "^4.0.1",
+    "prettier": "^3.9.6",
+    "typescript": "~6.0.3",
+    "vitest": "^5.0.0"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "test": "vitest",
+    "lint": "eslint . --ext .ts,.tsx"
+  },
+  "private": true
+}
