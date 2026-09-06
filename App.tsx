@@ -1,21 +1,21 @@
 import 'react-native-get-random-values';
+import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { WalletProvider } from './src/context/WalletContext';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <WalletProvider>
       <StatusBar style="auto" />
-    </View>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" options={{ title: 'Nexus Wallet' }} />
+        <Stack.Screen name="create-wallet" options={{ title: 'Create Wallet' }} />
+        <Stack.Screen name="unlock" options={{ title: 'Unlock Wallet' }} />
+        <Stack.Screen name="balance/[chainId]" options={{ title: 'Balance' }} />
+        <Stack.Screen name="send" options={{ title: 'Send' }} />
+        <Stack.Screen name="swap" options={{ title: 'Swap' }} />
+        <Stack.Screen name="settings" options={{ title: 'Settings' }} />
+      </Stack>
+    </WalletProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
