@@ -1,14 +1,22 @@
 {
   "name": "nexus",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "expo-router/entry",
   "private": true,
+  "overrides": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "resolutions": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "vitest",
+    "test": "jest",
     "lint": "eslint . --ext .ts,.tsx",
     "type-check": "tsc --noEmit"
   },
@@ -22,26 +30,57 @@
     "ed25519-hd-key": "^2.0.0",
     "ethers": "^6.17.0",
     "expo": "~57.0.20",
+    "expo-linking": "~57.0.9",
     "expo-local-authentication": "~57.0.2",
     "expo-router": "~4.0.0",
     "expo-secure-store": "~57.0.3",
     "expo-status-bar": "~57.0.1",
-    "react": "19.2.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-native": "0.86.3",
     "react-native-gesture-handler": "~2.0.0",
     "react-native-get-random-values": "^2.0.0",
     "react-native-safe-area-context": "~4.0.0",
-    "react-native-screens": "~4.0.0"
+    "react-native-screens": "~4.0.0",
+    "react-native-web": "^0.21.2"
   },
   "devDependencies": {
+    "@react-native/jest-preset": "^0.86.0",
+    "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^14.0.1",
-    "@types/react": "~19.2.2",
+    "@types/react": "~18.3.12",
     "@typescript-eslint/eslint-plugin": "^8.69.0",
     "@typescript-eslint/parser": "^8.69.0",
+    "babel-jest": "^30.5.1",
+    "babel-preset-expo": "^57.0.10",
     "eslint": "^10.9.1",
     "eslint-plugin-security": "^4.0.1",
+    "jest": "^30.5.1",
     "prettier": "^3.9.6",
-    "typescript": "~6.0.3",
-    "vitest": "^5.0.0"
+    "typescript": "~6.0.3"
+  },
+  "jest": {
+    "preset": "@react-native/jest-preset",
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@react-native|@expo|react-native|expo-|@react-navigation)/)"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.js"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)",
+      "**/?(*.)+(spec|test).[jt]s?(x)"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx,ts,tsx}",
+      "!**/node_modules/**",
+      "!**/coverage/**",
+      "!**/android/**",
+      "!**/ios/**",
+      "!**/.expo/**"
+    ]
   }
 }

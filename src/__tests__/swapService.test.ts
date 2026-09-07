@@ -1,5 +1,3 @@
-import { describe, it, expect } from 'vitest';
-
 describe('Swap Service Tests', () => {
   it('should verify swap service file exists', () => {
     // This test verifies the swap service exists and can be imported

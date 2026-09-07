@@ -1,5 +1,3 @@
-import { describe, it, expect } from 'vitest';
-
 describe('Wallet Context Tests', () => {
   it('should verify wallet context file exists', () => {
     // This test verifies the wallet context exists and can be imported

@@ -1,5 +1,3 @@
-import { describe, it, expect } from 'vitest';
-
 describe('WalletService Tests', () => {
   it('should verify wallet service file exists', () => {
     // This test verifies the wallet service exists and can be imported

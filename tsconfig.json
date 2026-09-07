@@ -1,7 +1,10 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
-    "types": ["vitest/globals"]
-  }
+    "strict": true
+  },
+  "exclude": [
+    "node_modules",
+    "src/__tests__"
+  ]
 }

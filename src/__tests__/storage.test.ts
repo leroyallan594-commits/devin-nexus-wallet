@@ -1,5 +1,3 @@
-import { describe, it, expect } from 'vitest';
-
 describe('Storage Utility Tests', () => {
   it('should verify storage utility file exists', () => {
     // This test verifies the storage utility exists and can be imported

@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 import {
   CHAIN_CONFIGS,
   SUPPORTED_CHAINS,
