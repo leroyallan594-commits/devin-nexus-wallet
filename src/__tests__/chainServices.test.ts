@@ -1,3 +1,5 @@
+import { describe, it, expect } from 'vitest';
+
 describe('Chain Services Tests', () => {
   it('should verify EVM service file exists', () => {
     // This test verifies the EVM service exists and can be imported

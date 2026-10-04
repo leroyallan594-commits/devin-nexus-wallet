@@ -86,9 +86,12 @@ export const WalletProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       const balances: Record<string, string> = {};
       const tokens: Record<string, Token[]> = {};
 
+      // Initialize balances for all chains except Solana (will be derived on-demand)
       SUPPORTED_CHAINS.forEach(chainId => {
-        balances[chainId] = '0';
-        tokens[chainId] = [];
+        if (chainId !== 'solana') {
+          balances[chainId] = '0';
+          tokens[chainId] = [];
+        }
       });
 
       const newWalletData: WalletData = {
@@ -126,9 +129,12 @@ export const WalletProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       const balances: Record<string, string> = {};
       const tokens: Record<string, Token[]> = {};
 
+      // Initialize balances for all chains except Solana (will be derived on-demand)
       SUPPORTED_CHAINS.forEach(chainId => {
-        balances[chainId] = '0';
-        tokens[chainId] = [];
+        if (chainId !== 'solana') {
+          balances[chainId] = '0';
+          tokens[chainId] = [];
+        }
       });
 
       const newWalletData: WalletData = {
@@ -190,9 +196,12 @@ export const WalletProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       const balances: Record<string, string> = {};
       const tokens: Record<string, Token[]> = {};
 
+      // Initialize balances for all chains except Solana (will be derived on-demand)
       SUPPORTED_CHAINS.forEach(chainId => {
-        balances[chainId] = '0';
-        tokens[chainId] = [];
+        if (chainId !== 'solana') {
+          balances[chainId] = '0';
+          tokens[chainId] = [];
+        }
       });
 
       const unlockedData: WalletData = {
@@ -229,7 +238,16 @@ export const WalletProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 
       for (const chainId of SUPPORTED_CHAINS) {
         try {
-          const address = walletData.addresses[chainId];
+          let address = walletData.addresses[chainId];
+          
+          // Derive Solana address on-demand if not present
+          if (chainId === 'solana' && !address) {
+            address = walletService.deriveSolanaAddress(mnemonic);
+            // Update the addresses in the state
+            const updatedAddresses = { ...walletData.addresses, solana: address };
+            setWalletData(prev => ({ ...prev, addresses: updatedAddresses }));
+          }
+          
           if (!address) continue;
 
           let balance = '0';

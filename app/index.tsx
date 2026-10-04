@@ -88,7 +88,7 @@ export default function IndexScreen() {
 
         <Text style={styles.sectionTitle}>Balances</Text>
         
-        {SUPPORTED_CHAINS.map(chainId => {
+        {SUPPORTED_CHAINS.filter(chainId => chainId !== 'solana' || walletData.addresses[chainId]).map(chainId => {
           const config = getChainConfig(chainId);
           const address = walletData.addresses[chainId];
           const balance = walletData.balances[chainId];
@@ -112,6 +112,23 @@ export default function IndexScreen() {
             </TouchableOpacity>
           );
         })}
+        
+        {/* Show Solana as available but not yet activated */}
+        {walletData.isWalletCreated && !walletData.addresses.solana && (
+          <TouchableOpacity
+            style={styles.chainCard}
+            onPress={() => {
+              refreshBalances();
+            }}
+          >
+            <View style={styles.chainHeader}>
+              <Text style={styles.chainName}>Solana</Text>
+              <Text style={styles.chainSymbol}>SOL</Text>
+            </View>
+            <Text style={styles.chainBalance}>Tap to activate</Text>
+            <Text style={styles.chainAddress}>Available</Text>
+          </TouchableOpacity>
+        )}
       </ScrollView>
     </View>
   );

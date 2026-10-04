@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import type { Token, Transaction, SwapQuote, WalletData } from '../types';
 
 describe('Type Definitions', () => {

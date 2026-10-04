@@ -205,7 +205,9 @@ export class WalletService {
   deriveAllAddresses(mnemonic: string): Record<string, string> {
     try {
       const addresses: Record<string, string> = {};
-      const chainIds = ['ethereum', 'bsc', 'polygon', 'solana', 'bitcoin'];
+      // Skip Solana during initial derivation to avoid WebSocket crash on mobile
+      // Solana address will be derived on-demand when Solana features are used
+      const chainIds = ['ethereum', 'bsc', 'polygon', 'bitcoin'];
 
       for (const chainId of chainIds) {
         try {
@@ -219,6 +221,20 @@ export class WalletService {
       return addresses;
     } catch (error) {
       throw new StorageError('Failed to derive all addresses: ' + (error as Error).message);
+    }
+  }
+
+  /**
+   * Derive Solana address separately (called on-demand)
+   * @param mnemonic Mnemonic phrase
+   * @returns Solana address
+   */
+  deriveSolanaAddress(mnemonic: string): string {
+    try {
+      const derivation = this.deriveSolanaWallet(mnemonic);
+      return derivation.address;
+    } catch (error) {
+      throw new StorageError('Failed to derive Solana address: ' + (error as Error).message);
     }
   }
 }
